@@ -280,7 +280,7 @@ public class SolitaireGUI {
         if (card.isFaceUp()) {
             imageName = card.getRank().getRankString().toLowerCase() + "_of_" + card.getSuit().toString().toLowerCase() + ".png";
         } else {
-            imageName = "new_card_back.jpeg";
+            imageName = "images.png";
         }
         System.out.println("Attempting to load image: " + imageName);
         ImageIcon icon = new ImageIcon("./solitaire/src/main/cardImages/" + imageName);
@@ -315,7 +315,7 @@ public class SolitaireGUI {
     // Method to update the deck component
     private void updateDeckComponent(JLabel deckLabel) {
         if (!gameState.getDeck().isEmpty()) {
-            ImageIcon icon = new ImageIcon("./solitaire/src/main/cardImages/new_card_back.jpeg");
+            ImageIcon icon = new ImageIcon("./solitaire/src/main/cardImages/images.png");
             Image scaledImage = icon.getImage().getScaledInstance(73, 97, Image.SCALE_SMOOTH);
             deckLabel.setIcon(new ImageIcon(scaledImage));
         } else {

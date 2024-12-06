@@ -171,6 +171,11 @@ public class GameState {
                 return true;
             }
         }
+        if (foundationPiles[foundationIndex].peek().getSuit() == card.getSuit()) {
+            if(foundationPiles[foundationIndex].peek().getRank().ordinal() + 1 == card.getRank().ordinal()) {
+                return true;
+            }
+        }
         
         //hint: another good time to use peek() and ordinal()
         return false;
@@ -178,7 +183,15 @@ public class GameState {
 
     public boolean moveToFoundation(int fromPileIndex, int foundationIndex) {
         //check if we can move the top card of the fromPile to the foundation at foundationIndex
-        
+        if (canMoveToFoundation(gamePiles[fromPileIndex].peek(), foundationIndex)) {
+            foundationPiles[foundationIndex].push(gamePiles[fromPileIndex].pop());
+            if(gamePiles[fromPileIndex].size() != 0) {
+            if(!(gamePiles[fromPileIndex].peek().isFaceUp())) {
+                gamePiles[fromPileIndex].peek().flip();
+            }
+        }
+            return true;
+        }
         //remember to flip the new top card if it is face down
 
         //return true if successful, false otherwise
@@ -188,7 +201,10 @@ public class GameState {
     public boolean moveToFoundationFromVisibleCards(int foundationIndex) {
         //similar to the above method, 
         //move the top card from the visible cards to the foundation pile with index foundationIndex if possible
-        
+        if(canMoveToFoundation(visibleCards.peek(), foundationIndex)) {
+            foundationPiles[foundationIndex].push(visibleCards.pop());
+            return true;
+        }
         //return true if successful, false otherwise. 
         return false;
     }
