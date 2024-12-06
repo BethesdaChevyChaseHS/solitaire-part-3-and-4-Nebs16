@@ -132,13 +132,14 @@ public class GameState {
 
     // Move a card from one pile to another
     public boolean moveCards(int fromPileIndex, int cardIndex, int toPileIndex) {
+        System.out.println("from: " + fromPileIndex + ", card index: " + cardIndex + ", toPileIndex: " + toPileIndex);
         Stack<Card> fromPile = gamePiles[fromPileIndex];
 
         // Create a sub-stack of cards to move
         ArrayList<Card> cardsToMove = new ArrayList<>(fromPile.subList(cardIndex, fromPile.size()));
-
+        System.out.println(cardsToMove.size());
         Card bottomCard = cardsToMove.get(0); // the bottom card to be moved
-
+        System.out.println("WE MADE IT HERE");
         // Check if bottomCard can be moved to the toPile
         // if we can move the cards, add cardsToMove to the toPile and remove them from the fromPile
         // Then, flip the next card in the fromPile stack
@@ -153,8 +154,9 @@ public class GameState {
                         gamePiles[fromPileIndex].peek().flip();
                     }
             }
+            return true;
         }
-
+        System.out.println("WE R HEREEE");
         //return true if successful, false if unsuccessful
 
         return false;
